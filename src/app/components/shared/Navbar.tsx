@@ -81,7 +81,7 @@ const Navbar = () => {
               0
             </span>
           </Link>
-          <Link href="" className="flex items-center gap-2 text-white">
+          <Link href="" className="flex items-center gap-2 text-white ">
             <span className=" ">Saved</span>
             <span className="border border-white/40 text-white text-xs font-semibold px-2.5 py-0.5 rounded-full hidden sm:inline">
               0

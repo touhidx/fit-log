@@ -11,7 +11,7 @@ const Banner = () => {
             WORKOUT LIBRARY
           </p>
 
-          <h1 className="mt-3 text-white font-extrabold uppercase leading-[0.95] text-4xl sm:text-4xl lg:text-5xl">
+          <h1 className="mt-3 text-white font-extrabold uppercase leading-[0.95] text-4xl sm:text-4xl lg:text-5xl font-Oswald">
             Train with intent.log
             <br />
             Log every set.
@@ -35,7 +35,7 @@ const Banner = () => {
           <Image
             src={BannerImage}
             alt="Athlete training on gym equipment"
-            className="w-full max-w-[280px] sm:max-w-[380px] md:max-w-none h-auto md:max-h-[420px] object-contain"
+            className="w-full max-w-70 sm:max-w-70 md:max-w-none h-auto md:max-h-80 object-contain"
             priority
           />
         </div>
