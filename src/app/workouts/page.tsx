@@ -7,10 +7,11 @@ const getWorkouts = async (): Promise<Exercise[]> => {
   });
 
   if (!res.ok) {
-    throw new Error("Failed to fetch workouts");
+    return [];
   }
 
-  return res.json();
+  const data = await res.json();
+  return data;
 };
 
 const Workouts = async () => {
