@@ -21,7 +21,7 @@ const Navbar = () => {
   const pathname = usePathname();
   const { addPlan, addSave } = useContext(WorkContext);
   return (
-    <div className="bg-black py-3">
+    <nav className="bg-black py-3 border-b  border-white/10">
       <div className="navbar container mx-auto px-4 md:px-6">
         <div className="navbar-start">
           <div className="dropdown">
@@ -95,7 +95,7 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-end flex items-center gap-3 sm:gap-5 text-sm">
-          <Link href="" className="flex items-center gap-2 text-white">
+          <Link href="/my-plan" className="flex items-center gap-2 text-white">
             <span className="bg-black px-2 sm:px-0 text-white max-sm:rounded-2xl sm:bg-none">
               Plan
             </span>
@@ -103,7 +103,7 @@ const Navbar = () => {
               {addPlan.length}
             </span>
           </Link>
-          <Link href="" className="flex items-center gap-2 text-white ">
+          <Link href="/my-plan" className="flex items-center gap-2 text-white ">
             <span className=" ">Saved</span>
             <span className="border border-white/40 text-white text-xs font-semibold px-2.5 py-0.5 rounded-full ">
               {addSave.length}
@@ -111,7 +111,7 @@ const Navbar = () => {
           </Link>
         </div>
       </div>
-    </div>
+    </nav>
   );
 };
 

@@ -22,13 +22,15 @@ const Banner = () => {
             into today&apos;s plan, and watch the week&apos;s work add up.
           </p>
 
-          <button
-            className="mt-6 inline-flex items-center gap-1 bg-[#C2F800] text-black
+          <a href="#workouts">
+            <button
+              className="mt-6 inline-flex items-center gap-1 bg-[#C2F800] text-black
                        text-xs sm:text-sm font-bold uppercase tracking-wide
                        px-5 py-3 rounded-md hover:bg-[#aee000] transition-colors"
-          >
-            Browse Workouts
-          </button>
+            >
+              Browse Workouts
+            </button>
+          </a>
         </div>
 
         <div className="order-1 md:order-2 flex justify-center md:justify-end">

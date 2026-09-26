@@ -3,7 +3,7 @@
 import { Exercise } from "@/types/workouts.type";
 import { CalendarPlus, Bookmark } from "lucide-react";
 import { useContext, useRef } from "react";
-import { Bounce, Slide, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { WorkContext } from "../components/contexts/workoutContext";
 
 const WorkoutActions = ({ workout }: { workout: Exercise }) => {

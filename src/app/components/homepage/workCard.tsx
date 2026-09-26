@@ -10,7 +10,7 @@ interface Iprops {
 
 const WorkCard = ({ workoutsData }: Iprops) => {
   return (
-    <section className=" py-12 md:py-16">
+    <section className=" py-12 md:py-16" id="workouts">
       <div className="container mx-auto px-4 md:px-6">
         <h1 className="text-2xl sm:text-3xl font-extrabold text-white uppercase">
           The Library

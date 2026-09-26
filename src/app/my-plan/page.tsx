@@ -4,7 +4,6 @@ import React, { useContext, useState } from "react";
 import { WorkContext } from "../components/contexts/workoutContext";
 import MyPlanCard from "./MyPlanCard";
 import Link from "next/link";
-import { toast } from "react-toastify";
 
 type Tab = "today" | "saved";
 type SortKey = "duration" | "calories" | "rating";
@@ -15,7 +14,7 @@ const MyPlan = () => {
   const [sortBy, setSortBy] = useState<SortKey>("duration");
 
   if (!context) return null; // provider not mounted yet
-  const { addPlan, setAddPlan, addSave, setAddSave } = context;
+  const { addPlan, addSave } = context;
 
   const list = activeTab === "today" ? addPlan : addSave;
 
@@ -28,24 +27,6 @@ const MyPlan = () => {
   const totalMinutes = addPlan.reduce((sum, w) => sum + w.duration, 0);
   const totalCalories = addPlan.reduce((sum, w) => sum + w.caloriesBurned, 0);
 
-  const handleRemove = (id: number) => {
-    setAddPlan(addPlan.filter((item) => item.id !== id));
-    toast.error("Already saved for later", {
-      position: "top-right",
-      autoClose: 2000,
-      theme: "dark",
-    });
-  };
-
-  const handleMarkDone = (id: number) => {
-    setAddSave(addPlan.filter((item) => item.id !== id));
-    toast.error("Already saved for later", {
-      position: "top-right",
-      autoClose: 2000,
-      theme: "dark",
-    });
-  };
-
   return (
     <section className="bg-black min-h-screen py-8 md:py-12">
       <div className="container mx-auto px-4 md:px-6">
@@ -56,7 +37,6 @@ const MyPlan = () => {
           Cap of five lifts for today. Finish them, then load more.
         </p>
 
-        {/* Stats */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-0 bg-[#111] rounded-xl mt-6 p-6 sm:divide-x sm:divide-white/10">
           <div className="sm:px-6 first:pl-0">
             <p className="text-[#9CA3AF] text-xs uppercase tracking-wide">
@@ -84,15 +64,14 @@ const MyPlan = () => {
           </div>
         </div>
 
-        {/* Tabs + Sort */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mt-6">
-          <div className="inline-flex bg-[#111] rounded-full p-1 w-fit">
+          <div className="inline-flex bg-[#151921] rounded-full p-1 w-fit">
             <button
               onClick={() => setActiveTab("today")}
               className={`px-4 py-1.5 text-xs sm:text-sm font-semibold rounded-full transition-colors ${
                 activeTab === "today"
-                  ? "bg-white text-black"
-                  : "text-[#9CA3AF] hover:text-white"
+                  ? "bg-[#2B303D] text-white"
+                  : "text-[#9CA3AF] bg-[#151921]"
               }`}
             >
               Today&apos;s Plan
@@ -101,8 +80,8 @@ const MyPlan = () => {
               onClick={() => setActiveTab("saved")}
               className={`px-4 py-1.5 text-xs sm:text-sm font-semibold rounded-full transition-colors ${
                 activeTab === "saved"
-                  ? "bg-white text-black"
-                  : "text-[#9CA3AF] hover:text-white"
+                  ? "bg-[#2B303D] text-white"
+                  : "text-[#9CA3AF] bg-[#151921]"
               }`}
             >
               Saved
@@ -123,12 +102,11 @@ const MyPlan = () => {
           </div>
         </div>
 
-        {/* List / Empty state */}
         <div className="bg-[#111] rounded-xl mt-4 p-4 sm:p-6">
           {sortedList.length === 0 ? (
             <div className="flex flex-col items-center justify-center text-center py-16">
               <h3 className="text-white font-bold uppercase tracking-wide">
-                Nothing here yet
+                NOTHING HERE YET
               </h3>
               <p className="text-[#9CA3AF] text-sm mt-1 max-w-sm">
                 Browse the library and add a lift to get today moving.
@@ -147,8 +125,6 @@ const MyPlan = () => {
                   key={workout.id}
                   workout={workout}
                   showMarkDone={activeTab === "today"}
-                  onRemove={() => handleRemove(workout.id)}
-                  onMarkDone={() => handleMarkDone(workout.id)}
                 />
               ))}
             </div>
