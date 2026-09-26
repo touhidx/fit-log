@@ -2,9 +2,7 @@ import { Exercise } from "@/types/workouts.type";
 import WorkCard from "../components/homepage/workCard";
 
 const getWorkouts = async (): Promise<Exercise[]> => {
-  const res = await fetch("https://api.abcz.workers.dev/api/fitlog", {
-    cache: "force-cache",
-  });
+  const res = await fetch("https://api.abcz.workers.dev/api/fitlog");
 
   if (!res.ok) {
     return [];
