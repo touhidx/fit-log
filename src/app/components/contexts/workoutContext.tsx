@@ -10,9 +10,12 @@ interface WorkContextType {
   setAddSave: React.Dispatch<React.SetStateAction<Exercise[]>>;
 }
 
-export const WorkContext = createContext<WorkContextType | undefined>(
-  undefined,
-);
+export const WorkContext = createContext<WorkContextType>({
+  addPlan: [],
+  setAddPlan: () => {},
+  addSave: [],
+  setAddSave: () => {},
+});
 
 const WorkProvider = ({ children }: { children: ReactNode }) => {
   const [addPlan, setAddPlan] = useState<Exercise[]>([]);

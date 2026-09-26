@@ -19,9 +19,15 @@ const MyPlan = () => {
   const list = activeTab === "today" ? addPlan : addSave;
 
   const sortedList = [...list].sort((a, b) => {
-    if (sortBy === "duration") return b.duration - a.duration;
-    if (sortBy === "calories") return b.caloriesBurned - a.caloriesBurned;
-    if (sortBy === "rating") return b.rating - a.rating;
+    switch (sortBy) {
+      case "calories":
+        return b.caloriesBurned - a.caloriesBurned;
+      case "rating":
+        return b.rating - a.rating;
+      case "duration":
+      default:
+        return b.duration - a.duration;
+    }
   });
 
   const totalMinutes = addPlan.reduce((sum, w) => sum + w.duration, 0);
@@ -95,9 +101,15 @@ const MyPlan = () => {
               onChange={(e) => setSortBy(e.target.value as SortKey)}
               className="bg-[#111] text-white border border-white/10 rounded-lg px-3 py-1.5 outline-none"
             >
-              <option value="duration">Duration</option>
-              <option value="calories">Calories</option>
-              <option value="rating">Rating</option>
+              <option className="bg-[#2B303D] text-white" value="duration">
+                Duration
+              </option>
+              <option className="bg-[#2B303D] text-white" value="calories">
+                Calories
+              </option>
+              <option className="bg-[#2B303D] text-white" value="rating">
+                Rating
+              </option>
             </select>
           </div>
         </div>

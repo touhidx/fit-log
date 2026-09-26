@@ -14,7 +14,7 @@ interface MyPlanCardProps {
 }
 
 const MyPlanCard = ({ workout, showMarkDone }: MyPlanCardProps) => {
-  const { addPlan, setAddPlan, addSave, setAddSave } = useContext(WorkContext);
+  const { addPlan, setAddPlan } = useContext(WorkContext);
   const handleRemove = (id: number) => {
     setAddPlan(addPlan.filter((item: Exercise) => item.id !== id));
     toast.error("Already saved for later", {
@@ -75,7 +75,7 @@ const MyPlanCard = ({ workout, showMarkDone }: MyPlanCardProps) => {
               View Details
             </Link>
 
-            <div className="w-[118px] flex justify-center">
+            <div className="w-29.5 flex justify-center">
               <button
                 onClick={() => handleMarkDone(workout.id)}
                 className="flex items-center gap-1 bg-[#C2F800] text-black text-xs font-semibold px-3 py-1.5 rounded-full hover:bg-[#aee000] focus:outline-none focus-visible:ring-2 focus-visible:ring-white transition-colors whitespace-nowrap"

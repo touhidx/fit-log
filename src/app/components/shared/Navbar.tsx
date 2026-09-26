@@ -19,7 +19,10 @@ const inactiveClass = "text-[#9CA3AF] hover:text-white px-4 rounded-2xl";
 
 const Navbar = () => {
   const pathname = usePathname();
-  const { addPlan, addSave } = useContext(WorkContext);
+  const context = useContext(WorkContext);
+  if (!context) return null;
+
+  const { addPlan, addSave } = context;
   return (
     <nav className="bg-black py-3 border-b  border-white/10">
       <div className="navbar container mx-auto px-4 md:px-6">

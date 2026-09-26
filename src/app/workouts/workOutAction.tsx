@@ -77,7 +77,7 @@ const WorkoutActions = ({ workout }: { workout: Exercise }) => {
         className="flex items-center justify-center gap-2 bg-[#C2F800] text-black text-sm font-bold px-5 py-3 rounded-full hover:bg-[#aee000] transition-colors"
       >
         <CalendarPlus className="h-4 w-4" />
-        Add to today's plan
+        Add to today&apos;s plan
       </button>
 
       <button
