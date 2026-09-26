@@ -4,6 +4,7 @@ import React, { useContext, useState } from "react";
 import { WorkContext } from "../components/contexts/workoutContext";
 import MyPlanCard from "./MyPlanCard";
 import Link from "next/link";
+import { toast } from "react-toastify";
 
 type Tab = "today" | "saved";
 type SortKey = "duration" | "calories" | "rating";
@@ -19,24 +20,30 @@ const MyPlan = () => {
   const list = activeTab === "today" ? addPlan : addSave;
 
   const sortedList = [...list].sort((a, b) => {
-    if (sortBy === "duration") return a.duration - b.duration;
-    if (sortBy === "calories") return a.caloriesBurned - b.caloriesBurned;
-    return b.rating - a.rating;
+    if (sortBy === "duration") return b.duration - a.duration;
+    if (sortBy === "calories") return b.caloriesBurned - a.caloriesBurned;
+    if (sortBy === "rating") return b.rating - a.rating;
   });
 
   const totalMinutes = addPlan.reduce((sum, w) => sum + w.duration, 0);
   const totalCalories = addPlan.reduce((sum, w) => sum + w.caloriesBurned, 0);
 
   const handleRemove = (id: number) => {
-    if (activeTab === "today") {
-      setAddPlan(addPlan.filter((item) => item.id !== id));
-    } else {
-      setAddSave(addSave.filter((item) => item.id !== id));
-    }
+    setAddPlan(addPlan.filter((item) => item.id !== id));
+    toast.error("Already saved for later", {
+      position: "top-right",
+      autoClose: 2000,
+      theme: "dark",
+    });
   };
 
   const handleMarkDone = (id: number) => {
-    setAddPlan(addPlan.filter((item) => item.id !== id));
+    setAddSave(addPlan.filter((item) => item.id !== id));
+    toast.error("Already saved for later", {
+      position: "top-right",
+      autoClose: 2000,
+      theme: "dark",
+    });
   };
 
   return (

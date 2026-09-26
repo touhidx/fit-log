@@ -1,9 +1,25 @@
+"use client";
+
 import Image from "next/image";
+
 import Link from "next/link";
-import React from "react";
+import React, { useContext } from "react";
 import Logo from "@/app/assets/logo.png";
+import { usePathname } from "next/navigation";
+import { WorkContext } from "../contexts/workoutContext";
+
+const navLinks = [
+  { href: "/", label: "Workouts" },
+  { href: "/my-plan", label: "My Plan" },
+];
+
+const activeClass =
+  "bg-[#1A2312] text-[#C2F800] font-semibold rounded-full px-4";
+const inactiveClass = "text-[#9CA3AF] hover:text-white px-4 rounded-2xl";
 
 const Navbar = () => {
+  const pathname = usePathname();
+  const { addPlan, addSave } = useContext(WorkContext);
   return (
     <div className="bg-black py-3">
       <div className="navbar container mx-auto px-4 md:px-6">
@@ -37,13 +53,18 @@ const Navbar = () => {
               <li>
                 <Link
                   href="/"
-                  className="bg-[#C2F800] text-black font-semibold rounded-full text-center"
+                  className="bg-[#1A2312] text-[#C2F800] font-semibold rounded-full text-center"
                 >
                   Workouts
                 </Link>
               </li>
               <li>
-                <Link href="/">My Plan</Link>
+                <Link
+                  className="text-[#9CA3AF] hover:text-white px-4 rounded-2xl"
+                  href="/my-plan"
+                >
+                  My Plan
+                </Link>
               </li>
             </ul>
           </div>
@@ -56,35 +77,36 @@ const Navbar = () => {
 
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal gap-2 px-1">
-            <li>
-              <Link
-                href="/"
-                className="bg-[#C2F800] text-black font-semibold rounded-full px-4 hover:bg-[#C2F800]"
-              >
-                Workouts
-              </Link>
-            </li>
-            <li>
-              <Link href="/" className="text-[#9CA3AF] hover:text-white px-4">
-                My Plan
-              </Link>
-            </li>
+            {navLinks.map(({ href, label }) => {
+              const isActive = pathname === href;
+
+              return (
+                <li key={href}>
+                  <Link
+                    href={href}
+                    className={isActive ? activeClass : inactiveClass}
+                  >
+                    {label}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </div>
 
         <div className="navbar-end flex items-center gap-3 sm:gap-5 text-sm">
           <Link href="" className="flex items-center gap-2 text-white">
-            <span className="bg-[#C2F800] sm:bg-black px-2 sm:px-0 text-black sm:text-white max-sm:rounded-2xl sm:bg-none">
+            <span className="bg-black px-2 sm:px-0 text-white max-sm:rounded-2xl sm:bg-none">
               Plan
             </span>
-            <span className="bg-[#C2F800] text-black text-xs font-semibold px-2.5 py-0.5 rounded-full hidden sm:inline">
-              0
+            <span className="bg-[#C2F800] text-black text-xs font-semibold px-2.5 py-0.5 rounded-full ">
+              {addPlan.length}
             </span>
           </Link>
           <Link href="" className="flex items-center gap-2 text-white ">
             <span className=" ">Saved</span>
-            <span className="border border-white/40 text-white text-xs font-semibold px-2.5 py-0.5 rounded-full hidden sm:inline">
-              0
+            <span className="border border-white/40 text-white text-xs font-semibold px-2.5 py-0.5 rounded-full ">
+              {addSave.length}
             </span>
           </Link>
         </div>
