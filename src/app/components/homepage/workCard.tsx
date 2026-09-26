@@ -10,22 +10,19 @@ interface Iprops {
 
 const WorkCard = ({ workoutsData }: Iprops) => {
   return (
-    <Link href="/">
-      <section className=" py-12 md:py-16">
-        <div className="container mx-auto px-4 md:px-6">
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-white uppercase">
-            The Library
-          </h1>
-          <p className="text-sm text-[#9CA3AF] mt-1">
-            Twelve lifts covering every major muscle group.
-          </p>
+    <section className=" py-12 md:py-16">
+      <div className="container mx-auto px-4 md:px-6">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-white uppercase">
+          The Library
+        </h1>
+        <p className="text-sm text-[#9CA3AF] mt-1">
+          Twelve lifts covering every major muscle group.
+        </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-            {workoutsData.slice(0, 12).map((workout: Exercise) => (
-              <div
-                key={workout.id}
-                className="bg-[#151515] border border-white/5 rounded-xl overflow-hidden"
-              >
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+          {workoutsData.slice(0, 12).map((workout: Exercise) => (
+            <Link key={workout.id} href={`/workouts/${workout.id}`}>
+              <div className="bg-[#151515] border border-white/5 rounded-xl overflow-hidden">
                 <div className="relative w-full aspect-4/2 ">
                   <Image
                     src={workout.image}
@@ -70,11 +67,11 @@ const WorkCard = ({ workoutsData }: Iprops) => {
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
+            </Link>
+          ))}
         </div>
-      </section>
-    </Link>
+      </div>
+    </section>
   );
 };
 
