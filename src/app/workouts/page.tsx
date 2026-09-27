@@ -3,7 +3,7 @@ import WorkCard from "../components/homepage/workCard";
 
 const getWorkouts = async (): Promise<Exercise[]> => {
   const res = await fetch("https://api.abcz.workers.dev/api/fitlog", {
-    cache: "no-store",
+    next: { revalidate: 60 },
   });
 
   if (!res.ok) {

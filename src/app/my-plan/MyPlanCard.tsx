@@ -14,10 +14,11 @@ interface MyPlanCardProps {
 }
 
 const MyPlanCard = ({ workout, showMarkDone }: MyPlanCardProps) => {
-  const { addPlan, setAddPlan } = useContext(WorkContext);
+  const { addPlan, setAddPlan, setAddSave, addSave } = useContext(WorkContext);
   const handleRemove = (id: number) => {
+    setAddSave(addSave.filter((item: Exercise) => item.id !== id));
     setAddPlan(addPlan.filter((item: Exercise) => item.id !== id));
-    toast.error("Already saved for later", {
+    toast.error("Removed", {
       position: "top-right",
       autoClose: 2000,
       theme: "dark",
@@ -26,7 +27,7 @@ const MyPlanCard = ({ workout, showMarkDone }: MyPlanCardProps) => {
 
   const handleMarkDone = (id: number) => {
     setAddPlan(addPlan.filter((item: Exercise) => item.id !== id));
-    toast.error("Already saved for later", {
+    toast.success("Marked as Done !", {
       position: "top-right",
       autoClose: 2000,
       theme: "dark",
